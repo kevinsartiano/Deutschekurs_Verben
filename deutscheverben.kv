@@ -1,0 +1,59 @@
+WindowManager:
+    OpeningWindow:
+    MainWindow:
+    ResultWindow:
+
+<OpeningWindow>
+    name: "opening"
+
+    GridLayout:
+
+        cols: 1
+
+        Label:
+            text: "Deutsche Verben"
+
+        Button:
+            text: "Starten"
+            on_release: app.root.current = "main"
+
+<MainWindow>
+    name: "main"
+
+    GridLayout:
+
+        cols: 3
+        rows: 3
+
+        Label:
+            text: "Präsens (er)"
+
+        Label:
+            text: "Präteritum (ich)"
+
+        Label:
+            text: "Perfekt (er)"
+
+        TextInput:
+            id: answer1
+            multiline: False
+
+        TextInput:
+            id: answer2
+            multiline: False
+
+        TextInput:
+            id: answer3
+            multiline: False
+
+        Button:
+
+
+        Button:
+            text: "continue"
+
+        Button:
+
+
+<ResultWindow>
+    name: "result"
