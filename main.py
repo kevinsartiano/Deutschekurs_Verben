@@ -10,17 +10,29 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 
 
-class OpeningWindow(Screen):
-    pass
-
-class MainWindow(Screen):
-    random_verb = ObjectProperty(None)
-    answer_list = ObjectProperty(None)
+class Exercise:
+    random_verb = ""
+    answer_list = []
     tense_list = ['Präsens (er) ', 'Präteritum (ich) ', 'Perfekt (er) ']
     verb_list = {'Beginnen': ['beginnt', 'begann', 'hat begonnen'], 'Haben': ['hat', 'hatte', 'hat gehabt']}
 
+    def __init__(self):
+        self.random_verb = self.get_random_verb()
+
     def get_random_verb(self):
-        self.random_verb(list(self.verb_list.keys()))
+        return random.choice(list(self.verb_list.keys()))
+
+
+exercise = Exercise()
+
+
+class OpeningWindow(Screen):
+    pass
+
+
+class MainWindow(Screen):
+
+    current_verb = exercise.random_verb.upper()
 
     def add_answers(self):
         self.answer_list.append(self.answer1.text)
@@ -35,15 +47,6 @@ class ResultWindow(Screen):
 
 class WindowManager(ScreenManager):
     pass
-
-
-kv_source = Builder.load_file('deutscheverben.kv')
-
-screen_manager = WindowManager()
-
-screens = [OpeningWindow(name="opening"), MainWindow(name="main"), ResultWindow(name="result")]
-for screen in screens:
-    screen_manager.add_widget(screen)
 
 
 class DeutscheVerben(App):
@@ -73,6 +76,16 @@ class DeutscheVerben(App):
     #
     #     print('FEHLER GEMACHT: {}'.format(mistake_counter))
 
+
+kv_source = Builder.load_file('deutscheverben.kv')
+
+screen_manager = WindowManager()
+
+screens = [OpeningWindow(name="opening"), MainWindow(name="main"), ResultWindow(name="result")]
+for screen in screens:
+    screen_manager.add_widget(screen)
+
+exercise = Exercise()
 
 if __name__ == '__main__':
     DeutscheVerben().run()
