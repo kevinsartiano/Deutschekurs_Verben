@@ -7,13 +7,25 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
 
 
 class OpeningWindow(Screen):
     pass
 
-
 class MainWindow(Screen):
+    random_verb = ObjectProperty(None)
+    answer_list = ObjectProperty(None)
+    tense_list = ['Präsens (er) ', 'Präteritum (ich) ', 'Perfekt (er) ']
+    verb_list = {'Beginnen': ['beginnt', 'begann', 'hat begonnen'], 'Haben': ['hat', 'hatte', 'hat gehabt']}
+
+    def get_random_verb(self):
+        self.random_verb(list(self.verb_list.keys()))
+
+    def add_answers(self):
+        self.answer_list.append(self.answer1.text)
+        self.answer_list.append(self.answer2.text)
+        self.answer_list.append(self.answer3.text)
     pass
 
 
@@ -25,27 +37,41 @@ class WindowManager(ScreenManager):
     pass
 
 
+kv_source = Builder.load_file('deutscheverben.kv')
+
+screen_manager = WindowManager()
+
+screens = [OpeningWindow(name="opening"), MainWindow(name="main"), ResultWindow(name="result")]
+for screen in screens:
+    screen_manager.add_widget(screen)
+
+
 class DeutscheVerben(App):
-    tense_list = ['Präsens (er) ', 'Präteritum (ich) ', 'Perfekt (er) ']
-    verb_list = {'Beginnen': ['beginnt', 'begann', 'hat begonnen']}
 
     def build(self):
-        return Builder.load_file('deutscheverben.kv')
+        return screen_manager
 
-    def exercise(self):
-        random_verb = random.choice(list(self.verb_list.keys()))
-        answer_list = []
-        mistake_counter = -1
-
-        while answer_list != self.verb_list[random_verb]:
-            answer_list = []
-            print('\n{}'.format(random_verb.upper()))
-            for tense in self.tense_list:
-                answer = input('{}: '.format(tense))
-                answer_list.append(answer)
-            mistake_counter += 1
-
-        print('FEHLER GEMACHT: {}'.format(mistake_counter))
+    # def exercise(self):
+    #     random_verb = random.choice(list(self.verb_list.keys()))
+    #     answer_list = []
+    #     mistake_counter = -1
+    #
+    # def random_verb(self):
+    #     return random.choice(list(self.verb_list.keys()))
+    #
+    # def add_answer(self, answer):
+    #     answer_list = []
+    #     answer_list.append(answer)
+    #
+    #     while answer_list != self.verb_list[random_verb]:
+    #         answer_list = []
+    #         print('\n{}'.format(random_verb.upper()))
+    #         for tense in self.tense_list:
+    #             answer = input('{}: '.format(tense))
+    #             answer_list.append(answer)
+    #         mistake_counter += 1
+    #
+    #     print('FEHLER GEMACHT: {}'.format(mistake_counter))
 
 
 if __name__ == '__main__':

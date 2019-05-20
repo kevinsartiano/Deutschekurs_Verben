@@ -27,7 +27,11 @@ WindowManager:
 
     BoxLayout:
         orientation: 'vertical'
-        spacing: 10
+        spacing: 0
+
+        Button:
+#            text: main.get_random_verb()
+
 
         Label:
             text: "Präsens (er)"
@@ -48,7 +52,11 @@ WindowManager:
             id: answer3
 
         Button:
-            text: "continue"
+            text: "check"
+#            on_release: main.add_answers
+
+        Button:
+            text: "stop"
 
 
 <ResultWindow>
