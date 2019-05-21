@@ -24,14 +24,18 @@ WindowManager:
 
 <MainWindow>
     name: "main"
+    answer1: answer1
+    answer2: answer2
+    answer3: answer3
+    current_verb: current_verb
+    next_button: next_button
 
     BoxLayout:
         orientation: 'vertical'
         spacing: 0
 
         Button:
-            text: root.current_verb
-
+            id: current_verb
 
         Label:
             text: "Präsens (er)"
@@ -52,11 +56,13 @@ WindowManager:
             id: answer3
 
         Button:
+            id: next_button
             text: "check"
-#            on_release: main.add_answers
+            on_release: root.add_answers()
 
         Button:
             text: "stop"
+
 
 
 <ResultWindow>
