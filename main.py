@@ -12,17 +12,19 @@ from kivy.properties import ObjectProperty
 
 class Exercise:
     tense_list = ['Präsens (er) ', 'Präteritum (ich) ', 'Perfekt (er) ']
-    verb_list = {'BEGINNEN': ['beginnt', 'begann', 'hat begonnen'], 'HABEN': ['hat', 'hatte', 'hat gehabt']}
+    verb_list = {}
 
-    def __init__(self):
-        self.random_verb = self.get_random_verb()
+    def __init__(self, verb_file):
+        with open(verb_file, 'r') as file:
+            for line in file:
+                verb, praesens, praeteritum, perfekt = line.strip().split(",")
+                self.verb_list[verb] = [praesens, praeteritum, perfekt]
 
     def get_random_verb(self):
         return random.choice(list(self.verb_list.keys()))
 
 
-exercise = Exercise()
-
+exercise = Exercise('verb_list.csv')
 
 class OpeningWindow(Screen):
     pass
@@ -57,7 +59,7 @@ class MainWindow(Screen):
 
     def change_button_text(self):
         if self.next_button.text == 'check':
-            self.next_button.text = 'continue'
+            self.next_button.text = 'weiter'
         else:
             self.reset()
 
@@ -90,8 +92,6 @@ screen_manager = WindowManager()
 screens = [OpeningWindow(name="opening"), MainWindow(name="main"), ResultWindow(name="result")]
 for screen in screens:
     screen_manager.add_widget(screen)
-
-exercise = Exercise()
 
 screens[1].current_verb.text = exercise.get_random_verb()
 
