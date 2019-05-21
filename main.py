@@ -1,11 +1,6 @@
 import random
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 
@@ -26,6 +21,7 @@ class Exercise:
 
 exercise = Exercise('verb_list.csv')
 
+
 class OpeningWindow(Screen):
     pass
 
@@ -41,12 +37,14 @@ class MainWindow(Screen):
     mistake_counter = 0
 
     def add_answers(self):
-        self.answer_list.clear()
-        self.answer_list.append(self.answer1)
-        self.answer_list.append(self.answer2)
-        self.answer_list.append(self.answer3)
-
-        self.check_current_result()
+        if self.next_button.text == 'weiter':
+            self.change_button_text()
+        else:
+            self.answer_list.clear()
+            self.answer_list.append(self.answer1)
+            self.answer_list.append(self.answer2)
+            self.answer_list.append(self.answer3)
+            self.check_current_result()
 
     def check_current_result(self):
         for i in range(3):
@@ -70,9 +68,17 @@ class MainWindow(Screen):
             self.answer_list[i].foreground_color = (0, 0, 0, 1)
             self.answer_list[i].text = ""
 
+    def stop(self):
+        screen_manager.current = 'result'
+        screens[2].get_final_score()
+
 
 class ResultWindow(Screen):
-    pass
+
+    final_score = ObjectProperty(None)
+
+    def get_final_score(self):
+        self.final_score.text = "Du hast {} Fehler gemacht".format(str(screens[1].mistake_counter))
 
 
 class WindowManager(ScreenManager):

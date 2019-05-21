@@ -62,8 +62,13 @@ WindowManager:
 
         Button:
             text: "stop"
+            on_release: root.stop()
 
 
 
 <ResultWindow>
     name: "result"
+    final_score: final_score
+
+    Label:
+        id: final_score
