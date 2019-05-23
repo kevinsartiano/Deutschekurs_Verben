@@ -6,7 +6,7 @@ DÜRFEN,darf,durfte,hat gedurft
 ESSEN,isst,aß,hat gegessen
 FAHREN,färht,fuhr,ist gefahren
 FANGEN,fängt,fing,hat gefangen
-FLIEGEN,fliegt,flog,geflogen
+FLIEGEN,fliegt,flog,ist geflogen
 GEBEN,gibt,gab,hat gegeben
 GEHEN,geht,ging,ist gegangen
 HABEN,hat,hatte,hat gehabt
@@ -31,14 +31,14 @@ SPRECHEN,spricht,sprach,hat gesprochen
 STEHEN,steht,stand,hat gestanden
 TREFFEN,trifft,traf,hat getroffen
 TRINKEN,trinkt,trank,hat getrunken
-TUN,tut,tat,getan
+TUN,tut,tat,hat getan
 WISSEN,weiß,wusste,hat gewusst
 WOLLEN,will,wollte,hat gewollt
 BACKEN,backt,buk,hat gebacken
 BIEGEN,biegt,bog,ist gebogen
 BIETEN,bietet,bot,hat geboten
 BITTEN,bittet,bat,hat gebeten
-BRATEN,brät, briet, hat gebraten
+BRATEN,brät,briet,hat gebraten
 FALLEN,fällt,fiel,ist gefallen
 GEFALLEN,gefällt,gefiel,hat gefallen
 GEWINNEN,gewinnt,gewann,hat gewonnen
@@ -48,7 +48,7 @@ LIEGEN,liegt,lag,hat gelegen
 NENNEN,nennt,nannte,hat genannt
 RENNEN,rennt,rannte,ist gerannt
 RIECHEN,riecht,roch,hat gerochen
-SCHLIEßEN,schließen, schloss, hat geschlossen
+SCHLIEßEN,schließen,schloss,hat geschlossen
 SITZEN,sitzt,saß,hat gesessen
 STEIGEN,steigen,stieg,ist gestiegen
 STERBEN,stirbt,starb,ist gestorben
