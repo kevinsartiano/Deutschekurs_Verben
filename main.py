@@ -4,6 +4,7 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
 
 
 class Exercise:
@@ -53,6 +54,7 @@ class MainWindow(Screen):
                 self.answer_list[i].foreground_color = (0, 1, 0, 1)
             else:
                 self.answer_list[i].foreground_color = (1, 0, 0, 1)
+                self.answer_list[i].text += " > {}".format(exercise.verb_list[self.current_verb.text][i])
                 self.mistake_counter += 1
         self.change_button_text()
 
@@ -99,6 +101,8 @@ screen_manager = WindowManager()
 screens = [OpeningWindow(name="opening"), MainWindow(name="main"), ResultWindow(name="result")]
 for screen in screens:
     screen_manager.add_widget(screen)
+
+Window.softinput_mode = 'below_target'
 
 screens[1].current_verb.text = exercise.get_random_verb()
 
